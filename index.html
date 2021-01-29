@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>My Vue app</title>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <h1>My Todos</h1>
+      <ul>
+        <li v-for="(todo,index) in todos">   <!--  ここで、配列を作る際に、indexを記入しておかないと、配列番号を、変数として他の処理に使えなくなる。-->
+          {{ todo }}
+          <span @click="deleteItem(index)" class="command">[x]</span>
+        </li>
+      </ul>
+      <form v-on:submit="addItem">
+        <!-- <form @submit.prevent="addItem"> -->
+        <input type="text" v-model="newItem" />
+        <input type="submit" value="Add" />
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
