@@ -24,7 +24,9 @@ var vm = new Vue({
       this.newItem = '';
     },
     deleteItem: function(index) {
-      this.todos.splice(index,1)  //ここでindexを使ってどれを消すか選別する。
+      if (confirm('本当に削除しますか？')) {
+        this.todos.splice(index,1)  //ここでindexを使ってどれを消すか選別する。
+      }
     }
   }
 });
