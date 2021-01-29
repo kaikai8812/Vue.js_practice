@@ -16,14 +16,25 @@ body {
 
 #app li {
   line-height: 1.5;
+  
 }
 
 #app input[type="text"] {
   padding: 2px;
 }
 
-.command{
-font-size: 12px;
-cursor: pointer;
-color: red;
+.command {
+  font-size: 12px;
+  cursor: pointer;
+  color: red;
+}
+
+#app li > span.done {
+  text-decoration: line-through;
+  color: #ddd;
+}
+ul {
+  padding: 0;
+  list-style: none;
+  margin: auto;
 }

@@ -7,14 +7,42 @@
   </head>
   <body>
     <div id="app" class="container">
-      <h1>My Todos</h1>
-      <ul>
-        <li v-for="(todo,index) in todos">   <!--  ここで、配列を作る際に、indexを記入しておかないと、配列番号を、変数として他の処理に使えなくなる。-->
-          {{ todo }}
-          <span @click="deleteItem(index)" class="command">[x]</span>
-        </li>
+      <h1>
+        My Todos
+        <span class="info">({{remaining}}/{{todos.length}})</span>
+      </h1>
+
+      <!-- v-for, v-elseを用いた場合の文。 ↓-->
+      <!-- <ul v-if = "todos.length">
+        <li v-for="(todo,index) in todos"> -->
+          <!--  ここで、配列を作る際に、indexを記入しておかないと、配列番号を、変数として他の処理に使えなくなる。-->
+          <!-- <input type="checkbox" v-model="todo.isDone" />  checkboxと、isDoneのtrueかfalseを紐づける -->
+          <!-- <span v-bind:class="{done: todo.isDone}"> {{ todo.title }} </span> -->
+          <!-- 上記の式は、todo.isDoneが、trueの時に,doneクラスが適用されるという意味 -->
+          <!-- <span @click="deleteItem(index)" class="command">[x]</span> -->
+        <!-- </li>
       </ul>
-      <form v-on:submit="addItem">
+      <ul v-else>
+        <li>今日のtodoはまだありません。</li>
+      </ul> -->
+        <!-- v-for, v-elseを用いた場合の文。↑ -->
+
+        <!-- v-showを用いた場合の処理 ↓-->
+        <ul >
+          <li v-for="(todo,index) in todos">
+            <!--  ここで、配列を作る際に、indexを記入しておかないと、配列番号を、変数として他の処理に使えなくなる。-->
+            <input type="checkbox" v-model="todo.isDone" /> <!--  checkboxと、isDoneのtrueかfalseを紐づける-->
+            <span v-bind:class="{done: todo.isDone}"> {{ todo.title }} </span>
+            <!-- 上記の式は、todo.isDoneが、trueの時に,doneクラスが適用されるという意味 -->
+            <span @click="deleteItem(index)" class="command">[x]</span>
+          </li>
+          <li v-show="!todos.length"> 今日のtodoはありません。</li>
+        </ul>
+
+        <!-- v-showを用いた場合の処理 ↑-->
+
+
+      <form @submit.prevent="addItem">
         <!-- <form @submit.prevent="addItem"> -->
         <input type="text" v-model="newItem" />
         <input type="submit" value="Add" />
